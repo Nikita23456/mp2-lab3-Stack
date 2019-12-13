@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-const int MAX_SIZE = 100000;
+const int MAX_SIZE = 1000;
 
 template <class T>
 class Stack

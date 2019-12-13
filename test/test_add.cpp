@@ -2,13 +2,7 @@
 
 #include <gtest.h>
 
-TEST(Postfix, can_parse_string)//можем разобрать строку
-{
-	string t = "a+b*c";
-	Par parse(t);
-	parse._Postfix();
-	ASSERT_NO_THROW(parse._Postfix());
-}
+
 
 TEST(Postfix, throw_when_parse_empty_string)//бросить при разборе пустую строку
 {

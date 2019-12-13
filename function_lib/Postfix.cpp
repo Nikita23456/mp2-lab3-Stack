@@ -58,24 +58,35 @@ string Par::_Postfix()
 				stack_s.push(stand[i]);
 			else
 			{
-				//int _index = operands.find(stand[i]);
-			//	while (!stack_s.isEmpty())
-			//	{
-				//	char t = stack_s.pop();
-				//	if (t == '(')
-				//	{
-					//	stack_s.push(t);
-					//	break;
-					//   }
-					//}
+				int _index = operands.find(stand[i]);
+				while (!stack_s.isEmpty())
+				{
+					char t = stack_s.pop();
+					if (t == '(')
+					{
+						stack_s.push(t);
+						break;
+					}
+					int t_index = operands.find(t);
+					if (pr[t_index] >= pr[_index])
+						postfix += t;
+					else
+					{
+						stack_s.push(t);
+						break;
+					}
+				}
 				stack_s.push(stand[i]);
+		
 			}
+			
 		}
 	}
 	while (!stack_s.isEmpty())
 		postfix += stack_s.pop();
+	postfix += " ";
 	return postfix;
-}
+		}
 
 double Par::Calculate()
 {
@@ -89,7 +100,8 @@ double Par::Calculate()
 		if (operands.find(postfix[i]) == string::npos)
 		{
 			double t;
-			if ((postfix[i] < 48) || (postfix[i] > 57))
+			//if ((postfix[i] < 48) || (postfix[i] > 57))
+			if ((postfix[i] < '0') || (postfix[i] > '9'))
 			{
 				if (postfix[i] != ' ')
 				{
@@ -131,13 +143,13 @@ double Par::Calculate()
 				th_Value = o_Value + t_Value;
 				break;
 			case '-':
-				th_Value = o_Value + t_Value;
+				th_Value = o_Value - t_Value;
 				break;
 			case '*':
-				th_Value = o_Value + t_Value;
+				th_Value = o_Value * t_Value;
 				break;
 			case '/':
-				th_Value = o_Value + t_Value;
+				th_Value = o_Value / t_Value;
 				break;
 			}
 			result.push(th_Value);

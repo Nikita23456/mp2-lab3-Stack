@@ -8,7 +8,8 @@ class Par
 {
 	string stand;
 	string postfix;
-	string operands = "+-*/";
+	string operands="+-*/";
+	int pr[4] = { 1,1,2,2 };
 	bool Right(string str);
 public:
 	Par(string inf);
